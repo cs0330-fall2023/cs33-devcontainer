@@ -2,6 +2,8 @@
 	"name": "Brown CS",
 	"dockerFile": "Dockerfile",
 	"initializeCommand": "bash ./.devcontainer/build-container",
+	"securityOpt": [ "seccomp=unconfined" ],
+	"capAdd": ["SYS_PTRACE"],
 	"customizations": {
 		// Configure properties specific to VS Code.
 		"vscode": {
