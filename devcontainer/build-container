@@ -1,0 +1,36 @@
+#! /bin/bash
+
+echo "Cloning cs33-devcontainer repository..."
+rmdir ./.devcontainer/DEV-CONTAINER
+git clone https://github.com/cs0330-fall2023/cs33-devcontainer.git ./.devcontainer/DEV-CONTAINER
+
+cd ./.devcontainer/DEV-CONTAINER/docker
+
+# Get system architecture
+arch=$(uname -m)
+
+# Check architecture and rename Dockerfile accordingly
+if [[ "$arch" == "x86_64" ]]; then
+    if [ -f "Dockerfile.amd64" ]; then
+        mv Dockerfile.amd64 Dockerfile
+        echo "Renamed Dockerfile.amd64 to Dockerfile."
+    else
+        echo "Error: Dockerfile.amd64 not found!"
+        exit 1
+    fi
+elif [[ "$arch" == "aarch64" ]] || [[ "$arch" =~ "arm"* ]]; then
+    if [ -f "Dockerfile.arm64" ]; then
+        mv Dockerfile.arm64 Dockerfile
+        echo "Renamed Dockerfile.arm64 to Dockerfile."
+    else
+        echo "Error: Dockerfile.arm64 not found!"
+        exit 1
+    fi
+else
+    echo "Unsupported architecture: $arch"
+    exit 1
+fi
+
+mv Dockerfile ../../Dockerfile
+mv sources.list ../../sources.list
+rm -rf ../../DEV-CONTAINER
