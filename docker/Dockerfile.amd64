@@ -80,6 +80,13 @@ RUN apt-get -y install\
  time\
  traceroute
 
+# install dependencies for shell tests
+RUN apt -y install python3-pip
+RUN yes | pip install termcolor
+
+RUN apt -y install figlet\
+  sysvbanner
+
 # set up default locale
 RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8

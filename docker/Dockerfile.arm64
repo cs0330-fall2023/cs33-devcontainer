@@ -88,6 +88,13 @@ RUN apt-get -y install\
  time\
  traceroute
 
+ # install dependencies for shell tests
+RUN apt -y install python3-pip
+RUN yes | pip install termcolor
+
+RUN apt -y install figlet\
+  sysvbanner
+
 # install GCC-related packages for amd64
 RUN apt-get -y install\
  g++-9-x86-64-linux-gnu\
