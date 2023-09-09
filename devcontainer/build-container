@@ -1,7 +1,7 @@
 #! /bin/bash
 
 echo "Cloning cs33-devcontainer repository..."
-rmdir ./.devcontainer/DEV-CONTAINER
+rm -rf ./.devcontainer/DEV-CONTAINER
 git clone https://github.com/cs0330-fall2023/cs33-devcontainer.git ./.devcontainer/DEV-CONTAINER
 
 cd ./.devcontainer/DEV-CONTAINER/docker
