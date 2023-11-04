@@ -16,7 +16,7 @@ COPY --chown=root:root sources.list /etc/apt/sources.list
 RUN apt-get -y install binfmt-support &&\
   dpkg --add-architecture amd64 &&\
   apt-get update &&\
-  apt-get upgrade
+  apt-get upgrade -y
 
 # install GCC-related packages
 RUN apt-get -y install\
