@@ -6,7 +6,7 @@ ENV TZ=${TZ}
 
 # include manual pages and documentation
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update &&\
+RUN apt-get update --fix-missing &&\
   yes | unminimize
 
 # copy new sources.list
